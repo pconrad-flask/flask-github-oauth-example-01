@@ -26,7 +26,7 @@ if os.getenv('GITHUB_CLIENT_ID') == None or \
 
 app = Flask(__name__)
 
-app.debug = True
+app.debug = False
 
 app.secret_key = os.environ['APP_SECRET_KEY']
 oauth = OAuth(app)
