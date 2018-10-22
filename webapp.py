@@ -64,7 +64,9 @@ def home():
 
 @app.route('/login')
 def login():
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme='https'))
+    print("url_for('authorized')=",url_for('authorized'))
+    scheme='http'
+    return github.authorize(callback=url_for('authorized', _external=True, _scheme=scheme))
 
 @app.route('/logout')
 def logout():
@@ -83,6 +85,9 @@ def logout():
 def authorized():
     resp = github.authorized_response()
 
+    print("Here is the resp object:")
+    pprint.pprint(resp);
+    
     if resp is None:
         session.clear()
         login_error_message = 'Access denied: reason=%s error=%s full=%s' % (
@@ -105,6 +110,7 @@ def authorized():
         return redirect(url_for('home'))
     
     try:
+        print("About to post requests to Github API ...")
         g = Github(resp['access_token'])
         org = g.get_organization(org_name)
         named_user = g.get_user(github_userid)
@@ -148,4 +154,4 @@ def get_github_oauth_token():
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=6789,debug=True)
