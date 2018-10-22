@@ -1,14 +1,11 @@
-# spis16-webapps-oauth-github-org-example 
+# pconrad-flask/flask-github-oauth-example-01
 
-Running on heroku at: <https://evening-earth-75796.herokuapp.com/>
 
-<http://still-garden-81467.herokuapp.com/>
 
 Requires:
 
 ```
-pip install --user Flask-OAuthlib
-pip install --user PyGithub
+pip install Flask-OAuthlib
+pip install PyGithub
 ```
 
-The `--user` is only for ACMS accounts: leave off the `--user` if running on your own PC.
