@@ -65,8 +65,10 @@ def home():
 @app.route('/login')
 def login():
     print("url_for('authorized')=",url_for('authorized'))
-    scheme='http'
-    return github.authorize(callback=url_for('authorized', _external=True, _scheme=scheme))
+    scheme='https' # http for localhost, https for heroku
+    return github.authorize(callback=url_for('authorized',
+                                             _external=True,
+                                             _scheme=scheme))
 
 @app.route('/logout')
 def logout():
