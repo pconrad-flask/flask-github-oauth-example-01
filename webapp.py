@@ -114,6 +114,12 @@ def authorized():
         g = Github(resp['access_token'])
         org = g.get_organization(org_name)
         named_user = g.get_user(github_userid)
+        print("named_user=");
+        pprint.pprint(named_user)
+
+        print("org=")
+        pprint.pprint(org)
+        
         isMember = org.has_in_members(named_user)
     except Exception as e:
         message = 'Unable to connect to Github with accessToken: ' + resp['access_token'] + " exception info: " + str(type(e)) + str(e)
